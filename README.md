@@ -13,4 +13,4 @@ CO2 Messgerät mit CCS811 und ESP32
 * 1000 uF Elektrolytkondensator
 * DC-DC Step Down Modul (Ausgangspannung 5V)
 * Batterie-Halter mit An-/Aus-Schalter für 9V Blockbatterie
-* Schrauben, Kable, Schrumpfschlauch
+* Schrauben, Kabel, Schrumpfschlauch
