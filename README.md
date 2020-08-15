@@ -11,3 +11,6 @@ CO2 Messgerät mit CCS811 und ESP32
 * Dallas DS18B20 (Temperatursensor)
 * 1 4,7 kOhm Widerstand
 * 1000 uF Elektrolytkondensator
+* DC-DC Step Down Modul (Ausgangspannung 5V)
+* Batterie-Halter mit An-/Aus-Schalter für 9V Blockbatterie
+* Schrauben, Kable, Schrumpfschlauch
