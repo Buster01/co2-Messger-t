@@ -17,8 +17,8 @@ CO2 Messgerät mit CCS811 und ESP32
 
 ### Verkabelung:
 
-ESP32 Modul | Waveshare 2.9" Display
-------------|------------------------
+ESP32 Modul | Waveshare 2.9" Display | CCS811
+------------|------------------------|-------
 3.3V | VCC (grau)
 GND  | GND (braun)
 GPIO 23  | DIN (blau)
@@ -27,9 +27,7 @@ GPIO 5   | CS  (orange)
 GPIO 16  | DC  (grün)
 GPIO 17  | RST (weiß)
 GPIO 4   | BUSY (violet)
-ESP32 Modul | CCS811
-------------|------------
-5V | VCC
-GND | GND + WAKE
-SCL | GPIO 22
-SDA | GPIO 21
+5V | | VCC
+GND | | GND + WAKE
+SCL | | GPIO 22
+SDA | | GPIO 21
