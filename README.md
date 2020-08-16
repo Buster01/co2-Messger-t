@@ -30,4 +30,4 @@ GPIO 4   | BUSY (violet)|
 5V | | Vcc | Vcc
 GPIO 22 | | SCL |
 GPIO 21 | | SDA | 
-GPIO 15 | | | DATA ( 4,7kOhm Widerstand zwischen Data und Vcc
+GPIO 15 | | | DATA ( 4,7kOhm Widerstand zwischen Data und Vcc)
