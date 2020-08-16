@@ -14,3 +14,16 @@ CO2 Messgerät mit CCS811 und ESP32
 * DC-DC Step Down Modul (Ausgangspannung 5V)
 * Batterie-Halter mit An-/Aus-Schalter für 9V Blockbatterie
 * Schrauben, Kabel, Schrumpfschlauch
+
+Verkabelung:
+
+ESP32 Modul | Waveshare 2.9" Display
+------------------------------------
+3.3V | VCC (grau)
+GND  | GND (braun)
+GPIO 23  | DIN (blau)
+GPIO 18  | CLK (gelb)
+GPIO 5   | CS  (orange)
+GPIO 16  | DC  (grün)
+GPIO 17  | RST (weiß)
+GPIO 4   | BUSY (violet)
