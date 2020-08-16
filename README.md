@@ -27,7 +27,6 @@ GPIO 5   | CS  (orange)
 GPIO 16  | DC  (grün)
 GPIO 17  | RST (weiß)
 GPIO 4   | BUSY (violet)
-
 ESP32 Modul | CCS811
 ------------|------------
 5V | VCC
