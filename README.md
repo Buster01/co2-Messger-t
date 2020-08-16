@@ -15,7 +15,7 @@ CO2 Messgerät mit CCS811 und ESP32
 * Batterie-Halter mit An-/Aus-Schalter für 9V Blockbatterie
 * Schrauben, Kabel, Schrumpfschlauch
 
-Verkabelung:
+### Verkabelung:
 
 ESP32 Modul | Waveshare 2.9" Display
 ------------|------------------------
@@ -27,3 +27,10 @@ GPIO 5   | CS  (orange)
 GPIO 16  | DC  (grün)
 GPIO 17  | RST (weiß)
 GPIO 4   | BUSY (violet)
+
+ESP32 Modul | CCS811
+------------|------------
+5V | VCC
+GND | GND + WAKE
+SCL | GPIO 22
+SDA | GPIO 21
