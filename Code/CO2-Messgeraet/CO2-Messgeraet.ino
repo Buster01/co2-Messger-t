@@ -8,10 +8,11 @@ Adafruit_CCS811 ccs;
 
 #include <DallasTemperature.h>
 #include <OneWire.h>
-#include <RunningMedian.h>
 
-RunningMedian co2_med = RunningMedian(120);
-RunningMedian tvoc_med = RunningMedian(120);
+#include "WiFi.h" 
+#include "driver/adc.h"
+#include <esp_wifi.h>
+#include <esp_bt.h>
 
 #define DS18B20_PIN 15
 #define TEMPERATURE_PRECISION 12
@@ -34,76 +35,34 @@ int sensor_count = 0;
 int displ_update = 0;
 
 #include "display.h"
+#include "energy_save.h"
+#include "sensor.h"
 
 
 void setup() {
+  esp_sleep_wakeup_cause_t wakeup_reason;
+  wakeup_reason = esp_sleep_get_wakeup_cause();
+  
   Serial.begin(115200);
-  Serial.println();
   Serial.println("setup");
+  stromsparmodus();
+  display_init();
+  sensor_init();
 
-  display.init(); 
-  display.setRotation(3);
-
-  // Display aufbau
-  display.fillScreen(GxEPD_WHITE);
-  display.setTextColor(GxEPD_BLACK);
-  display.fillRect(146, 0, 3, 128, GxEPD_BLACK);
-  display.fillRect(146, 63, 150, 3, GxEPD_BLACK);
-
-  //CO2
-  display.setCursor(20, 110);
-  display.setFont(&FreeMonoBold12pt7b);
-  display.println("ppm");
-  display.setFont(&FreeMonoBold24pt7b);
-  display.setCursor(77, 120);
-  display.print("CO");
-  display.setCursor(131, 126);
-  display.setFont(&FreeMonoBold12pt7b);
-  display.println("2");
-
-  // TVOC
-  display.setCursor(175, 57);
-  display.setFont(&FreeMonoBold9pt7b);
-  display.println("ppb TVOC"); 
-
-  // Temperatur
-    display.setCursor(175, 122);
-  display.setFont(&FreeMonoBold9pt7b);
-  display.println("Temperatur"); 
-  display.update();
-
-  if(!ccs.begin()){
-    Serial.println("Failed to start sensor! Please check your wiring.");
-    while(1);
+  switch(wakeup_reason) {
+    case ESP_SLEEP_WAKEUP_TIMER :
+      Serial.println("Wakeup");
+      break;
+  
+    default :
+      Serial.println("Reset");
+      display_default();
+      break;
   }
-
-  // dallas Sensor Init
-  DS18B20.begin(); // Dallas 18b20
-  delay(1000);
-  Serial.print("Anzahl Dallas Temperatur Sensoren: "); Serial.println(DS18B20.getDeviceCount());
-  sensor_count=DS18B20.getDeviceCount();
-  DS18B20.setResolution(TEMPERATURE_PRECISION);
-  Serial.print ("Setzte DS1B20 Temperatur Praezision auf ");
-  Serial.print (TEMPERATURE_PRECISION);
-  Serial.println ("Bit");
-
+  display_sensor_data();
+  deep_sleep();
 }
 
 void loop() {
-  if(ccs.available()){
-    if(!ccs.readData()){
-      DS18B20.requestTemperatures();
-      co2_med.add(ccs.geteCO2());
-      tvoc_med.add(ccs.getTVOC());
-      
-      display_co2(co2_med.getMedian());
-      display_tvoc(tvoc_med.getMedian());
-      display_temp(DS18B20.getTempCByIndex(0));
-      delay(1000);
-    }
-    else{
-      Serial.println("CO2 Sensor - ERROR!");
-      while(1);
-    }
-  }
+  
 }
