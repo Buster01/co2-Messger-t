@@ -27,13 +27,10 @@ void display_default(void){
   display.println("ppb TVOC"); 
 
   // Temperatur
-    display.setCursor(175, 122);
+  display.setCursor(175, 122);
   display.setFont(&FreeMonoBold9pt7b);
   display.println("Temperatur"); 
-  display.update();
 }
-
-
 
 void display_co2(long co2) {
   // CO2 
@@ -47,8 +44,6 @@ void display_co2(long co2) {
   display.setFont(&FreeMonoBoldOblique24pt7b);
   display.print(co2);
   co2_displ = co2;
-  display.updateWindow(0, 0, 143, 127, true);
-  delay(1000);
 }
 
 void display_tvoc(long tvoc){
@@ -63,8 +58,6 @@ void display_tvoc(long tvoc){
   display.setFont(&FreeMonoBold18pt7b);
   display.print(tvoc);
   tvoc_displ = tvoc;
-  display.updateWindow(149, 0, 146, 60, true);
-  delay(1000);
 }
 
 void display_temp(float temp){
@@ -79,6 +72,10 @@ void display_temp(float temp){
   display.setFont(&FreeMonoBold18pt7b);
   display.print(temp,1); display.print(" C");
   temp_displ = temp;
-  display.updateWindow(149, 67, 146, 60, true);
-  delay(1000);
+}
+
+void display_sensor_data(void){
+    display_co2(co2_med.getMedian());
+    display_tvoc(tvoc_med.getMedian());
+    display_temp(temp);
 }

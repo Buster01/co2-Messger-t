@@ -10,14 +10,14 @@ void stromsparmodus(void) {
   adc_power_off();
   esp_bt_controller_disable();
 
-  ccs.setDriveMode(CCS811_DRIVE_MODE_60SEC);
+  ccs.setDriveMode(CCS811_DRIVE_MODE_10SEC);
   Serial.println("Ende Setup Stromsparmodus");
 }
 
 void light_sleep(void) {
     Serial.println("LightSleep");
     delay(10);
-    long time2sleep = (45 * 1000000);
+    long time2sleep = (SLEEPTIME * 1000000);
     esp_sleep_enable_timer_wakeup(time2sleep);
     int ret = esp_light_sleep_start();
     delay(10);
@@ -26,7 +26,7 @@ void light_sleep(void) {
 void deep_sleep(void) {
     Serial.println("DeepSleep");
     delay(10);
-    long time2sleep = (45 * 1000000);
+    long time2sleep = (SLEEPTIME * 1000000);
     esp_sleep_enable_timer_wakeup(time2sleep);
     esp_deep_sleep_start(); 
     delay(10);

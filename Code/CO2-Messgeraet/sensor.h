@@ -14,18 +14,3 @@ void sensor_init(void){
   Serial.print (TEMPERATURE_PRECISION);
   Serial.println ("Bit");
 }
-
-void display_sensor_data(void){
-  if(ccs.available()){
-    if(!ccs.readData()){
-      DS18B20.requestTemperatures();      
-      display_co2(ccs.geteCO2());
-      display_tvoc(ccs.getTVOC());
-      display_temp(DS18B20.getTempCByIndex(0));
-      display.powerDown();  
-    } else {
-        Serial.println("CO2 Sensor - ERROR!");
-        while(1);
-    }
-  }
-}
