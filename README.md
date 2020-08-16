@@ -31,3 +31,11 @@ GPIO 4   | BUSY (violet)|
 GPIO 22 | | SCL |
 GPIO 21 | | SDA | 
 GPIO 15 | | | DATA ( 4,7kOhm Widerstand zwischen Data und Vcc)
+
+### Stromverbrauch
+
+Status | Stromverbrauch
+-------|---------------
+Light Sleep | ca. 22 mA
+CO2 / Temperatur messen (CPU aktiv) | ca. 43 mA
+Display aktualisieren (CPU aktiv) | ca. 60mA
